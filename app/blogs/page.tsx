@@ -1,5 +1,5 @@
-import { getBlogs } from '../services/blogs'
 import Link from 'next/link'
+import { getBlogs } from '../services/blogs'
 
 type Blog = {
 	id: number
@@ -15,13 +15,8 @@ const Blogs = async ({
 	searchParams: Promise<{ filter?: string }>
 }) => {
 	const { filter } = await searchParams
-	const allBlogs = getBlogs()
+	const blogs = await getBlogs(filter)
 
-	const blogs = filter
-		? allBlogs.filter((blog) =>
-				blog.title.toLowerCase().includes(filter.toLowerCase()),
-			)
-		: allBlogs
 	blogs.sort((a: Blog, b: Blog) => b.likes - a.likes)
 	return (
 		<div>
