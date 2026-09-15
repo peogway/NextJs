@@ -56,6 +56,9 @@ jobs:
         run: npm run dev > app.log 2>&1 &
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          AUTH_SECRET: ja37SMUSpqSdPrMZW+jQXF4bmpvWG8UaBGA1X3omPKo=
 
       - name: Wait a few seconds
         run: sleep 5
