@@ -2,18 +2,33 @@ import { eq, and, ilike } from 'drizzle-orm'
 import { db } from '../../db'
 import { blogs, readingList, users } from '../../db/schema'
 import { getCurrentUser } from './session'
+import { type } from 'node:os'
 
 export const getBlogs = async (filter: string | undefined) => {
 	if (filter) {
-		return db.query.blogs.findMany({
-			where: ilike(blogs.title, `%${filter}`),
+		console.log(filter, typeof filter)
+		const all = await db.query.blogs.findMany()
+		console.log('all')
+		console.log(all)
+
+		const data = await db.query.blogs.findMany({
+			where: ilike(blogs.title, `%${filter}%`),
+		})
+
+		console.log('hello')
+		console.log(data)
+		console.log('ok')
+
+		return data
+		return await db.query.blogs.findMany({
+			where: ilike(blogs.title, `%${filter}%`),
 		})
 	}
-	return db.query.blogs.findMany()
+	return await db.query.blogs.findMany()
 }
 
 export const getBlogById = async (id: number) => {
-	return db.query.blogs.findFirst({
+	return await db.query.blogs.findFirst({
 		where: eq(blogs.id, id),
 	})
 }

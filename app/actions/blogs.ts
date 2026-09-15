@@ -54,7 +54,7 @@ export const createBlog = async (
 		return { errors, values: { title, author, url }, success: false }
 	}
 
-	await addBlog(author, title, url)
+	await addBlog(title, author, url)
 	revalidatePath('/blogs')
 	return { errors, values: { title, author, url }, success: true }
 	// redirect('/blogs')

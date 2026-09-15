@@ -32,7 +32,7 @@ const ReadingList = async () => {
 			<h1 className='text-2xl font-bold mb-4'>Reading List</h1>
 			<h2 className='text-lg font-bold mb-4'>Unread ({unreadBlogs.length})</h2>
 
-			<div className='ml-2'>
+			<div className='ml-2' data-testid='unread-section'>
 				<ul>
 					{unreadBlogs.map((blog) => {
 						return (
@@ -47,6 +47,7 @@ const ReadingList = async () => {
 										<button
 											type='submit'
 											className='bg-green-500 text-white px-2 py-1 rounded-md hover:bg-blue-600'
+											data-testid='mark-read-'
 										>
 											mark as read
 										</button>
@@ -62,7 +63,7 @@ const ReadingList = async () => {
 			</div>
 
 			<h2 className='text-lg font-bold mb-4 mt-3'>Read ({readBlogs.length})</h2>
-			<div className='ml-2' data-testid='unread-section'>
+			<div className='ml-2' data-testid='read-section'>
 				<ul>
 					{readBlogs.map((blog) => {
 						return (
