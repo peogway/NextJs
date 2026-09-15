@@ -16,15 +16,42 @@ export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	username: text('username').notNull().unique(),
 	name: text('name').notNull(),
+	passwordHash: text('password_hash').notNull().default(''),
+	token: text('token').default(''),
+})
+
+export const readingList = pgTable('readingList', {
+	id: serial('id').primaryKey(),
+	blogId: integer('blog_id')
+		.notNull()
+		.references(() => blogs.id),
+	userId: integer('user_id')
+		.notNull()
+		.references(() => users.id),
+	read: boolean('read').default(false),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({
 	blogs: many(blogs),
+	readingList: many(readingList),
 }))
 
-export const blogsRelations = relations(blogs, ({ one }) => ({
+export const blogsRelations = relations(blogs, ({ one, many }) => ({
 	user: one(users, {
 		fields: [blogs.userId],
+		references: [users.id],
+	}),
+	readingList: many(readingList),
+}))
+
+export const readingListRelations = relations(readingList, ({ one }) => ({
+	blog: one(blogs, {
+		fields: [readingList.blogId],
+		references: [blogs.id],
+	}),
+
+	user: one(users, {
+		fields: [readingList.userId],
 		references: [users.id],
 	}),
 }))

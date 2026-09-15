@@ -29,6 +29,34 @@
       "when": 1787131097343,
       "tag": "0003_hard_fabian_cortez",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788350410455,
+      "tag": "0004_clumsy_blizzard",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789297534270,
+      "tag": "0005_ancient_ikaris",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1789373133710,
+      "tag": "0006_cuddly_vertigo",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1789373555886,
+      "tag": "0007_low_vision",
+      "breakpoints": true
     }
   ]
 }
